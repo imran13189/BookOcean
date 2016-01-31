@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IBookSet.cs" />
+    <Compile Include="Abstract\ICompany.cs" />
     <Compile Include="Abstract\IStandard.cs" />
     <Compile Include="Abstract\IUser.cs" />
     <Compile Include="Concrete\BookRepo.cs" />
