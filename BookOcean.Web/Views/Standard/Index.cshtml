@@ -1,0 +1,26 @@
+﻿
+
+@model IEnumerable<BookOcean.Domain.Standard>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+    <th>Class Name</th>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ClassName</td>
+        </tr>
+    }
+
+
+</table>
+
