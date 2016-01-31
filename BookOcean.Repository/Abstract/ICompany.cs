@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BookOcean.Repository.Abstract
 {
-    class ICompany
+    interface ICompany
     {
+        bool getapp();
     }
 }
