@@ -8,6 +8,6 @@ namespace BookOcean.Repository.Abstract
 {
   public  interface IBook
     {
-
+        bool GetBook();
     }
 }
