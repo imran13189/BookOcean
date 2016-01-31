@@ -8,17 +8,8 @@ using BookOcean.Domain;
 using System.Data.Entity.Infrastructure;
 namespace BookOcean.Repository.Concrete
 {
-    public class BookRepo:Connection,IBookSet
+    public class BookRepo:Connection,IBook
     {
-        public IEnumerable<Book> GetBookByStandard(int classId)
-        {
-            try
-            {
-                IEnumerable<Book> data = this.entities.Books.Where(x => x.ClassID == classId);
-               
-                return data;
-            }
-            catch { return null; }
-        }
+        
     }
 }

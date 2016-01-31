@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="POSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="POSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bills">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,24 +18,22 @@
         </EntityType>
         <EntityType Name="Books">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BookId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Publication" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Edition" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ClassID" Type="int" Nullable="false" />
-          <Property Name="CostPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="BookSets">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SetId" />
           </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SetId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClassID" Type="int" Nullable="false" />
           <Property Name="SetName" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="BookId" Type="bigint" />
         </EntityType>
         <EntityType Name="Standards">
           <Key>
@@ -43,14 +41,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tables">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SetID" Type="bigint" />
-          <Property Name="BookID" Type="bigint" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -62,18 +52,6 @@
           <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
           <Property Name="CityId" Type="int" />
         </EntityType>
-        <Association Name="FK_Book_Book">
-          <End Role="Standards" Type="Self.Standards" Multiplicity="1" />
-          <End Role="Books" Type="Self.Books" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Standards">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Books">
-              <PropertyRef Name="ClassID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BookSet_BookSet">
           <End Role="Standards" Type="Self.Standards" Multiplicity="1" />
           <End Role="BookSets" Type="Self.BookSets" Multiplicity="*" />
@@ -91,19 +69,13 @@
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookSets" EntityType="Self.BookSets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Standards" EntityType="Self.Standards" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Book_Book" Association="Self.FK_Book_Book">
-            <End Role="Standards" EntitySet="Standards" />
-            <End Role="Books" EntitySet="Books" />
-          </AssociationSet>
           <AssociationSet Name="FK_BookSet_BookSet" Association="Self.FK_BookSet_BookSet">
             <End Role="Standards" EntitySet="Standards" />
             <End Role="BookSets" EntitySet="BookSets" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="POSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -118,46 +90,57 @@
           <Property Name="SetID" Type="Int64" Nullable="false" />
           <Property Name="SelectedBook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityContainer Name="POSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="Books" EntityType="POSModel.Book" />
+          <EntitySet Name="BookSets" EntityType="POSModel.BookSet" />
+          <EntitySet Name="Standards" EntityType="POSModel.Standard" />
+          <AssociationSet Name="FK_BookSet_BookSet" Association="POSModel.FK_BookSet_BookSet">
+            <End Role="Standard" EntitySet="Standards" />
+            <End Role="BookSet" EntitySet="BookSets" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="POSModel.User" />
+        </EntityContainer>
         <EntityType Name="Book">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BookId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BookName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Publication" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Edition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClassID" Type="Int32" Nullable="false" />
-          <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Standard" Relationship="Self.FK_Book_Book" FromRole="Books" ToRole="Standards" />
+          <Property Name="BookId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Publication" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Edition" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BookSet">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SetId" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SetId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClassID" Type="Int32" Nullable="false" />
           <Property Name="SetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Standard" Relationship="Self.FK_BookSet_BookSet" FromRole="BookSets" ToRole="Standards" />
+          <Property Name="BookId" Type="Int64" />
+          <NavigationProperty Name="Standard" Relationship="POSModel.FK_BookSet_BookSet" FromRole="BookSet" ToRole="Standard" />
         </EntityType>
         <EntityType Name="Standard">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Books" Relationship="Self.FK_Book_Book" FromRole="Standards" ToRole="Books" />
-          <NavigationProperty Name="BookSets" Relationship="Self.FK_BookSet_BookSet" FromRole="Standards" ToRole="BookSets" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookSets" Relationship="POSModel.FK_BookSet_BookSet" FromRole="Standard" ToRole="BookSet" />
         </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SetID" Type="Int64" />
-          <Property Name="BookID" Type="Int64" />
-        </EntityType>
+        <Association Name="FK_BookSet_BookSet">
+          <End Type="POSModel.Standard" Role="Standard" Multiplicity="1" />
+          <End Type="POSModel.BookSet" Role="BookSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookSet">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -168,46 +151,6 @@
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CityId" Type="Int32" />
         </EntityType>
-        <Association Name="FK_Book_Book">
-          <End Role="Standards" Type="Self.Standard" Multiplicity="1" />
-          <End Role="Books" Type="Self.Book" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Standards">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Books">
-              <PropertyRef Name="ClassID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BookSet_BookSet">
-          <End Role="Standards" Type="Self.Standard" Multiplicity="1" />
-          <End Role="BookSets" Type="Self.BookSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Standards">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BookSets">
-              <PropertyRef Name="ClassID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="POSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Bills" EntityType="Self.Bill" />
-          <EntitySet Name="Books" EntityType="Self.Book" />
-          <EntitySet Name="BookSets" EntityType="Self.BookSet" />
-          <EntitySet Name="Standards" EntityType="Self.Standard" />
-          <EntitySet Name="Tables" EntityType="Self.Table" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Book_Book" Association="Self.FK_Book_Book">
-            <End Role="Standards" EntitySet="Standards" />
-            <End Role="Books" EntitySet="Books" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BookSet_BookSet" Association="Self.FK_BookSet_BookSet">
-            <End Role="Standards" EntitySet="Standards" />
-            <End Role="BookSets" EntitySet="BookSets" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -229,51 +172,40 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="POSModel.Book">
               <MappingFragment StoreEntitySet="Books">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="BookName" ColumnName="BookName" />
-                <ScalarProperty Name="Publication" ColumnName="Publication" />
                 <ScalarProperty Name="Edition" ColumnName="Edition" />
-                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Publication" ColumnName="Publication" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BookSets">
             <EntityTypeMapping TypeName="POSModel.BookSet">
               <MappingFragment StoreEntitySet="BookSets">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-                <ScalarProperty Name="SetName" ColumnName="SetName" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SetName" ColumnName="SetName" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SetId" ColumnName="SetId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Standards">
             <EntityTypeMapping TypeName="POSModel.Standard">
               <MappingFragment StoreEntitySet="Standards">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ClassName" ColumnName="ClassName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="POSModel.Table">
-              <MappingFragment StoreEntitySet="Tables">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SetID" ColumnName="SetID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="POSModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

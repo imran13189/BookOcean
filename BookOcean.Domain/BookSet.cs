@@ -14,10 +14,11 @@ namespace BookOcean.Domain
     
     public partial class BookSet
     {
-        public long Id { get; set; }
+        public long SetId { get; set; }
         public int ClassID { get; set; }
         public string SetName { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<long> BookId { get; set; }
     
         public virtual Standard Standard { get; set; }
     }

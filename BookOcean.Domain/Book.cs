@@ -14,14 +14,9 @@ namespace BookOcean.Domain
     
     public partial class Book
     {
-        public int Id { get; set; }
+        public long BookId { get; set; }
         public string BookName { get; set; }
         public string Publication { get; set; }
         public string Edition { get; set; }
-        public int ClassID { get; set; }
-        public decimal CostPrice { get; set; }
-        public decimal SalePrice { get; set; }
-    
-        public virtual Standard Standard { get; set; }
     }
 }

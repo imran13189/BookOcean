@@ -79,9 +79,6 @@
     <Compile Include="Standard.cs">
       <DependentUpon>POS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Table.cs">
-      <DependentUpon>POS.tt</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>POS.tt</DependentUpon>
     </Compile>

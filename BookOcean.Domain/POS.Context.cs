@@ -29,7 +29,6 @@ namespace BookOcean.Domain
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<BookSet> BookSets { get; set; }
         public virtual DbSet<Standard> Standards { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

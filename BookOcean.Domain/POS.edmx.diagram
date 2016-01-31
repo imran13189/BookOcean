@@ -6,13 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d814f6faf5954cf5b0281b6630f492dc" Name="Diagram1">
         <EntityTypeShape EntityType="POSModel.Bill" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSModel.Book" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSModel.BookSet" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSModel.Standard" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSModel.Table" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSModel.User" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="POSModel.FK_Book_Book" ManuallyRouted="false" />
-        <AssociationConnector Association="POSModel.FK_BookSet_BookSet" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="POSModel.Book" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="POSModel.BookSet" Width="1.5" PointX="11" PointY="0.875" />
+        <EntityTypeShape EntityType="POSModel.Standard" Width="1.5" PointX="8.75" PointY="1.25" />
+        <AssociationConnector Association="POSModel.FK_BookSet_BookSet" />
+        <EntityTypeShape EntityType="POSModel.User" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

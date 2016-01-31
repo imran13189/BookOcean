@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBook.cs" />
     <Compile Include="Abstract\IBookSet.cs" />
     <Compile Include="Abstract\ICompany.cs" />
     <Compile Include="Abstract\IStandard.cs" />
     <Compile Include="Abstract\IUser.cs" />
     <Compile Include="Concrete\BookRepo.cs" />
+    <Compile Include="Concrete\BookSetRepo.cs" />
     <Compile Include="Concrete\Connection.cs" />
     <Compile Include="Concrete\StandardRepo.cs" />
     <Compile Include="Concrete\UserRepo.cs" />

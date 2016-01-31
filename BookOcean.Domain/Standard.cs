@@ -16,14 +16,12 @@ namespace BookOcean.Domain
     {
         public Standard()
         {
-            this.Books = new HashSet<Book>();
             this.BookSets = new HashSet<BookSet>();
         }
     
         public int Id { get; set; }
         public string ClassName { get; set; }
     
-        public virtual ICollection<Book> Books { get; set; }
         public virtual ICollection<BookSet> BookSets { get; set; }
     }
 }
