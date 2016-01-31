@@ -10,6 +10,7 @@ namespace BookOcean.Repository.Abstract
     {
         string Register(RegisterModel model);
         bool IsUserExist(LoginModel model);
+
        
     }
 }
