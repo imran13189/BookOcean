@@ -15,7 +15,7 @@ namespace BookOcean.Repository.Concrete
         {
             try
             {
-                IEnumerable<Book> data = this.entities.Books.Where(x => x.ClassID == classId);
+                IEnumerable<Book> data=null;//this.entities.Books.Where(x => x.ClassID == classId);
 
                 return data;
             }

@@ -10,6 +10,9 @@ namespace BookOcean.Repository.Concrete
 {
     public class BookRepo:Connection,IBook
     {
-        
+       public bool GetBook()
+        {
+            return true;
+        }
     }
 }
