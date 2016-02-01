@@ -31,7 +31,7 @@ namespace BookOcean.WebUI.Infrastructure
         private void AddBindings()
         {
             this._kernel.Bind<IStandard>().To<StandardRepo>();
-            this._kernel.Bind<IBookSet>().To<BookRepo>();
+            this._kernel.Bind<IBook>().To<BookRepo>();
             this._kernel.Bind<IUser>().To<UserRepo>();
 
 
