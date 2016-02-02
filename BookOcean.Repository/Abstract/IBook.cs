@@ -11,3 +11,4 @@ namespace BookOcean.Repository.Abstract
         bool GetBook();
     }
 }
+
