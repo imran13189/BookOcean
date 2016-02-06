@@ -1,1 +1,39 @@
 ﻿
+
+<link href="~/Scripts/bootstrap-table.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-table.js"></script>
+
+<script src="~/Scripts/Custom/Book.js"></script>
+
+
+<div id="custom-toolbar" class="filter-section filtersctn-physician">
+
+    <div class="form-inline" role="form">
+
+
+    </div>
+
+
+    <div class="form-inline" role="form">
+
+        <div class="form-group">
+            <div class="search">
+                <input class="form-control" id="BookName" placeholder="Unit Name" type="text" name="Drugname">
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="white-latest-btn" id="btnFilter" placeholder="" type="button" value="Filter" name="btnFilter">
+        </div>
+
+
+
+
+    </div>
+</div>
+<table class="table table-hover" data-url='#custom-toolbar' data-toolbar="#post" data-show-columns="true" data-show-filter="true" data-click-to-select="true"
+       id="grid">
+    <thead>
+
+    </thead>
+</table>
+</div>

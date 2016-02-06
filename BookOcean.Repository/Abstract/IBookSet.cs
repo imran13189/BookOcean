@@ -9,7 +9,16 @@ namespace BookOcean.Repository.Abstract
     public interface IBookSet
     {
         IEnumerable<Book> GetBookByStandard(int classId);
+
+        List<BookSet> GetClass(int classId);
+
         
+
+
+
+
+
+
 
         
     }

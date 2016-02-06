@@ -23,6 +23,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
 </head>
 <body>
     <section id="container">
@@ -640,7 +641,7 @@
     </section>
     <!-- Placed js at the end of the document so the pages load faster -->
     <!--Core js-->
-    <script src="~/Scripts/js/jquery.js"></script>
+    @*<script src="~/Scripts/js/jquery.js"></script>
     <script src="~/Scripts/bs3/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="~/Scriptsjs/jquery.scrollTo.min.js"></script>>
@@ -658,25 +659,10 @@
     <script src="~/Scripts/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
     <!--common script init for all pages-->
-    <script src="js/scripts.js"></script>
-    <script>
-    $(function ()
-    {
-        $("#wizard").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft"
-        });
-
-        $("#wizard-vertical").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            stepsOrientation: "vertical"
-        });
-    });
-
-
-    </script>
+    <script src="js/scripts.js"></script>*@
+    
 </body>
 </html>
+<script>
+    $_BaseUrl = "http://localhost:21033/";
+    </script>

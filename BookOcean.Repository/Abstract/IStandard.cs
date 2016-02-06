@@ -11,5 +11,7 @@ namespace BookOcean.Repository.Abstract
     {
        IEnumerable<Standard> GetAllStandards();
 
+        string AddStandard(Standard model);
+
     }
 }

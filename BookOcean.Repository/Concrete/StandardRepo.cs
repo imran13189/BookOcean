@@ -15,5 +15,20 @@ namespace BookOcean.Repository.Concrete
            return this.entities.Standards;
 
        }
+
+        public string AddStandard(Standard model)
+        {
+            try
+            {
+                Standard standard = new Standard();
+                standard.ClassName = model.ClassName;
+                this.entities.Standards.Add(standard);
+                entities.SaveChanges();
+                return "Add Succefully";
+            }
+            catch { return "Pleace Retry"; }
+
+        }
+
     }
 }

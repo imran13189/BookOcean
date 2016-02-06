@@ -33,6 +33,7 @@ namespace BookOcean.WebUI.Infrastructure
             this._kernel.Bind<IStandard>().To<StandardRepo>();
             this._kernel.Bind<IBook>().To<BookRepo>();
             this._kernel.Bind<IUser>().To<UserRepo>();
+            
 
 
         }

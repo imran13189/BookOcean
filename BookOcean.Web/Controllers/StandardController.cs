@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookOcean.Repository.Abstract;
+using BookOcean.Domain;
 
 namespace BookOcean.Web.Controllers
 {
@@ -25,5 +26,17 @@ namespace BookOcean.Web.Controllers
         {
             return View(_standard.GetAllStandards());
         }
+
+        public ActionResult Standard()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Standard(Standard model)
+        {
+            _standard.AddStandard(model);
+            return View();
+        }
+
     }
 }

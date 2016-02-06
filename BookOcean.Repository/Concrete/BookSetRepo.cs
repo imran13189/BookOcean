@@ -21,5 +21,25 @@ namespace BookOcean.Repository.Concrete
             }
             catch { return null; }
         }
+
+
+        public List<BookSet> GetClass(int classId)
+        {
+            try
+            {
+                var data = this.entities.BookSets.Where(x => x.ClassID == classId);
+                return data.ToList();
+            }
+
+            catch { return null; }
+
+        }
+
+        
+
+
+
+
+
     }
 }

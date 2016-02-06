@@ -22,5 +22,11 @@ namespace BookOcean.Web.Controllers
         {
             return View(_bookset.GetBookByStandard(1));
         }
+
+        public ActionResult Bookset()
+        {
+
+            return View(_bookset.GetClass(1));
+        }
     }
 }
