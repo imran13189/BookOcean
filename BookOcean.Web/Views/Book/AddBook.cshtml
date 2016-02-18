@@ -3,59 +3,15 @@
 <script src="~/bs3/js/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script>
     $().ready(function () {
         // validate the comment form when it is submitted
         //$("#commentForm").validate();
 
         // validate signup form on keyup and submit
-        $("#signupaForm").validate({
-            rules: {
-                BookName: "required",
-                //lastname: "required",
-                //username: {
-                //    required: true,
-                //    minlength: 2
-                //},
-                //password: {
-                //    required: true,
-                //    minlength: 5
-                //},
-                //confirm_password: {
-                //    required: true,
-                //    minlength: 5,
-                //    equalTo: "#password"
-                //},
-                //email: {
-                //    required: true,
-                //    email: true
-                //},
-                //topic: {
-                //    required: "#newsletter:checked",
-                //    minlength: 2
-                //},
-                agree: "required"
-            },
-            messages: {
-                BookName: "Please enter your firstname"
-               // lastname: "Please enter your lastname",
-                //username: {
-                //    required: "Please enter a username",
-                //    minlength: "Your username must consist of at least 2 characters"
-                //},
-                //password: {
-                //    required: "Please provide a password",
-                //    minlength: "Your password must be at least 5 characters long"
-                //},
-                //confirm_password: {
-                //    required: "Please provide a password",
-                //    minlength: "Your password must be at least 5 characters long",
-                //    equalTo: "Please enter the same password as above"
-                //},
-                //email: "Please enter a valid email address",
-                //agree: "Please accept our policy"
-            }
-        });
+       
 
       
     });
@@ -66,7 +22,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Advanced Form validations
+                Book
                 <span class="tools pull-right">
                     <a class="fa fa-chevron-down" href="javascript:;"></a>
                     <a class="fa fa-cog" href="javascript:;"></a>
@@ -76,9 +32,9 @@
             <div class="panel-body">
                 <div class="form">
 
-                    @using (Html.BeginForm("AddBook", "Book", FormMethod.Post, new {@class="cmxform form-horizontal" , @id = "signupaForm" }))
+                    @using (Ajax.BeginForm("AddBook", "Book", new AjaxOptions {HttpMethod="POST",OnSuccess="AddSuccess" },new{@class="cmxform form-horizontal" , @id = "signupaForm" }))
                     {
-                    
+
                         <div class="form-group ">
                             <label for="firstname" class="control-label col-lg-3">BookName</label>
                             <div class="col-lg-6">
@@ -107,6 +63,7 @@
                         <div class="form-group">
                             <div class="col-lg-offset-3 col-lg-6">
                                 <button class="btn btn-primary" type="submit">ADD</button>
+                                <button class="btn btn-danger btnClose" type="button">Close</button>
                             </div>
                         </div>
 

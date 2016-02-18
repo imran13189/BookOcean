@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../images/favicon.png">
     <title>Login</title>
     <!--Core CSS -->
     <link href="~/Content/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/Common.js"></script>
+
 </head>
 <body>
     <section id="container">
@@ -32,7 +34,7 @@
             <!--logo start-->
             <div class="brand">
                 <a href="index.html" class="logo">
-                    <img src="images/logo.png" alt="">
+                    <img src="../images/logo.png" alt="">
                 </a>
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars"></div>
@@ -122,7 +124,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="images/avatar-mini.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../images/avatar-mini.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Jonathan Smith</span>
                                         <span class="time">Just now</span>
@@ -134,7 +136,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="images/avatar-mini-2.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../images/avatar-mini-2.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Jane Doe</span>
                                         <span class="time">2 min ago</span>
@@ -146,7 +148,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="images/avatar-mini-3.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../images/avatar-mini-3.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Tasi sam</span>
                                         <span class="time">2 days ago</span>
@@ -158,7 +160,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="photo"><img alt="avatar" src="images/avatar-mini.jpg"></span>
+                                    <span class="photo"><img alt="avatar" src="../images/avatar-mini.jpg"></span>
                                     <span class="subject">
                                         <span class="from">Mr. Perfect</span>
                                         <span class="time">2 hour ago</span>
@@ -223,7 +225,7 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="images/avatar1_small.jpg">
+                            <img alt="" src="../images/avatar1_small.jpg">
                             <span class="username">John Doe</span>
                             <b class="caret"></b>
                         </a>
@@ -479,7 +481,7 @@
                             <li>
                                 <div class="prog-row">
                                     <div class="user-thumb">
-                                        <a href="#"><img src="images/avatar1_small.jpg" alt=""></a>
+                                        <a href="#"><img src="../images/avatar1_small.jpg" alt=""></a>
                                     </div>
                                     <div class="user-details">
                                         <h4><a href="#">Jonathan Smith</a></h4>
@@ -493,7 +495,7 @@
                                 </div>
                                 <div class="prog-row">
                                     <div class="user-thumb">
-                                        <a href="#"><img src="images/avatar1.jpg" alt=""></a>
+                                        <a href="#"><img src="../images/avatar1.jpg" alt=""></a>
                                     </div>
                                     <div class="user-details">
                                         <h4><a href="#">Anjelina Joe</a></h4>
@@ -507,7 +509,7 @@
                                 </div>
                                 <div class="prog-row">
                                     <div class="user-thumb">
-                                        <a href="#"><img src="images/chat-avatar2.jpg" alt=""></a>
+                                        <a href="#"><img src="../images/chat-avatar2.jpg" alt=""></a>
                                     </div>
                                     <div class="user-details">
                                         <h4><a href="#">John Doe</a></h4>
@@ -521,7 +523,7 @@
                                 </div>
                                 <div class="prog-row">
                                     <div class="user-thumb">
-                                        <a href="#"><img src="images/avatar1_small.jpg" alt=""></a>
+                                        <a href="#"><img src="../images/avatar1_small.jpg" alt=""></a>
                                     </div>
                                     <div class="user-details">
                                         <h4><a href="#">Mark Henry</a></h4>
@@ -535,7 +537,7 @@
                                 </div>
                                 <div class="prog-row">
                                     <div class="user-thumb">
-                                        <a href="#"><img src="images/avatar1.jpg" alt=""></a>
+                                        <a href="#"><img src="../images/avatar1.jpg" alt=""></a>
                                     </div>
                                     <div class="user-details">
                                         <h4><a href="#">Shila Jones</a></h4>
@@ -639,6 +641,45 @@
         </div>
         <!--right sidebar end-->
     </section>
+
+
+    <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal Tittle</h4>
+                </div>
+                <div class="modal-bodyl alertBody">
+                    Body goes here...
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal" type="button"> Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal Tittle</h4>
+                </div>
+                <div class="modal-body confirModal">
+                    Body goes here...
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-warning" type="button"> Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Placed js at the end of the document so the pages load faster -->
     <!--Core js-->
     @*<script src="~/Scripts/js/jquery.js"></script>

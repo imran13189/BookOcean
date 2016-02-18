@@ -69,12 +69,15 @@ namespace BookOcean.Repository.Concrete
 
         }
 
-        public List<Book> GetBooks()
+        public List<Book> GetBooks(int limit,int offset,string sort,string BookName)
         {
 
             SqlDataReader reader;
             SqlCommand cmd = this.DBConn("GetBooks");
-            cmd.Parameters.Add(new SqlParameter("@BookId", 1));
+           cmd.Parameters.AddRange(new SqlParameter[] { new SqlParameter("@limit", limit),
+               new SqlParameter("@offset", offset),
+               new SqlParameter("@bookname", BookName)
+           });
             reader = cmd.ExecuteReader();
             List<Book> books = ((IObjectContextAdapter)entities).ObjectContext.Translate<Book>(reader).ToList();
             this.conn.Close();

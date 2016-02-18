@@ -19,7 +19,7 @@ namespace BookOcean.Repository.Abstract
         Book DelBook(int bookId);
         Book EditBook(Book model);
 
-        List<Book> GetBooks();
+        List<Book> GetBooks(int limit, int offset, string sort,string BookName);
             
     }
 }

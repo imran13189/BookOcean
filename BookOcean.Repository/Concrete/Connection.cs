@@ -31,8 +31,7 @@ namespace BookOcean.Repository.Concrete
 
             // 1. create a command object identifying
             // the stored procedure
-            SqlCommand cmd = new SqlCommand(
-                ProcedureName, conn);
+            SqlCommand cmd = new SqlCommand(ProcedureName, conn);
 
             // 2. set the command object so it knows
             // to execute a stored procedure

@@ -8,10 +8,20 @@ using BookOcean.Repository.Abstract;
 using BookOcean.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using BookOcean.Domain.Common;
 
 namespace BookOcean.Web.API
 {
 
+    public class BookFilter : DataObject
+    {
+        public string BookName { get; set; }
+    }
+    public class BookDetail
+    {
+        public List<Book> data;
+        public int count;
+    }
 
     public class BookAPIController : ApiController
     {
@@ -20,10 +30,15 @@ namespace BookOcean.Web.API
         {
             this._book = book;
         }
-
-        public List<Book> GetBook(JObject data)
+        [HttpPost]
+        public dynamic GetBooks(BookFilter model)
         {
-            return _book.GetBooks();
+
+            BookDetail re = new BookDetail();
+            re.data = _book.GetBooks(model.limit,model.offset,model.order,model.BookName);
+            
+            return new { rows = re.data, total = re.data.First().CountOrders };
+            //return new List<Book>();
         }
     }
 }

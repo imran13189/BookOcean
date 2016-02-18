@@ -58,6 +58,8 @@
       <DependentUpon>POS.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Common\DataObject.cs" />
+    <Compile Include="Entities\BookModel.cs" />
     <Compile Include="Entities\LoginModel.cs" />
     <Compile Include="Entities\RegisterModel.cs" />
     <Compile Include="POS.Context.cs">

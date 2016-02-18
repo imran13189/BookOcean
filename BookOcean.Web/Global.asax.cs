@@ -15,7 +15,7 @@ namespace BookOcean.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+         ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
              GlobalConfiguration.Configure(WebApiConfig.Register);
             //WebApiConfig.Register();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

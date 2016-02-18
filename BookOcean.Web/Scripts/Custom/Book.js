@@ -3,13 +3,13 @@
     //Param.Name = "";
     //Param.Email = "";
     //Param.ZipCode = "";
-    $("#addFavMedi").hide();
+    $(".addBook").hide();
 
 
-    $("#btnStock").on('click', function () {
+    $("#btnAdd").on('click', function () {
 
 
-        $("#addFavMedi").show();
+        $(".addBook").show();
 
 
         $("#Name").val('');
@@ -21,20 +21,11 @@
     });
 
 
-    //$("#CloseStock").on('click', function () {
-    //    if ($('#addFavMedi').css('display') == 'none') {
+    $(".btnClose").click(function () {
 
-    //        $("#addFavMedi").show();
+        $(".addBook").hide();
 
-    //    }
-    //    else {
-    //        $("#addFavMedi").hide();
-
-    //    }
-
-
-    //});
-
+    });
 
     $(document).ready(function () {
        
@@ -63,7 +54,7 @@
 
         //alert("Hello testing ");
 
-        var reqUrl = $_BaseUrl + '/API/BookAPI/GetBooks';
+        var reqUrl = $_BaseUrl + 'api/BookAPI/GetBooks';
         var headers = $("#token").val();
         // alert("Header1=" + headers);
         $('#grid').bootstrapTable({
@@ -92,8 +83,8 @@
             toolbar: '#custom-toolbar',
             columns: [
                  {
-                     field: 'FavouriteMedicationId',
-                     title: 'FavouriteMedicationId',
+                     field: 'BookId',
+                     title: 'BookId',
                      checkbox: false,
                      type: 'search',
                      visible: false,
@@ -106,23 +97,23 @@
                         checkbox: false,
                         type: 'search',
                         sortable: true,
-                    },
-
+                    }
+                    ,
                      {
                          field: 'Publication',
                          title: 'Status',
                          formatter: operateFormatters,
                          events: operateEvents
                      },
-                      {
-                          field: 'operate',
-                          title: 'Actions',
+                    //  {
+                    //      field: 'operate',
+                    //      title: 'Actions',
 
 
-                          clickToSelect: false,
-                          formatter: operateFormatter,
-                          events: operateEvents
-                      }
+                    //      clickToSelect: false,
+                    //      formatter: operateFormatter,
+                    //      events: operateEvents
+                    //  }
             ],
             onSubmit: function () {
                 var data = $('#filter-bar').bootstrapTableFilter('getData');
@@ -304,7 +295,7 @@ function AddNew() {
 
 
 function RefreshGrid() {
-    $('#unitgrid').bootstrapTable('refresh', { silent: true });
+    $('#grid').bootstrapTable('refresh', { silent: true });
 
 }
 function AddUnitSuccess(data) {
@@ -387,3 +378,9 @@ function validate() {
     return temp;
 }
 
+function AddSuccess(data)
+{
+    RefreshGrid();
+    $(".addBook").hide();
+    AlertMessage("Successfull added")
+}

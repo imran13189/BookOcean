@@ -10,6 +10,11 @@ namespace BookOcean.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Repository.Abstract;
+    using Repository.Concrete;
+    using System.Collections.Generic;
+    using Ninject.Modules;
+    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -42,7 +47,9 @@ namespace BookOcean.Web.App_Start
             var kernel = new StandardKernel();
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-            
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
+
             RegisterServices(kernel);
             return kernel;
         }
@@ -53,6 +60,9 @@ namespace BookOcean.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IStandard>().To<StandardRepo>();
+            kernel.Bind<IBook>().To<BookRepo>();
+            kernel.Bind<IUser>().To<UserRepo>();
         }        
     }
 }
